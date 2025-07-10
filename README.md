@@ -40,3 +40,14 @@ cd Generate-Solana-Wallet
 ```
 ```
 python3 solana.py
+```
+# Copy Text of file if you are in WSL or Window. Everytime you run `clip.exe` command you it will copy the content on the clipboard.
+```
+cat wallet.txt | clip.exe   
+```
+```
+cat pvt.csv | clip.exe
+```
+```
+cat pvt2.csv | clip.exe
+```
