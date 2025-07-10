@@ -1,0 +1,42 @@
+# 🐍 Solana Wallet Generator – `python.py`
+
+Generate multiple **Solana wallets** with private keys and addresses saved into separate files.
+
+<div align="center">
+  <img src="https://img.shields.io/badge/solana-wallet--tool-green?style=for-the-badge&logo=solana" />
+  <img src="https://img.shields.io/badge/python-3.10+-blue?style=for-the-badge&logo=python" />
+  <img src="https://img.shields.io/badge/platform-WSL/Linux-lightgrey?style=for-the-badge&logo=ubuntu" />
+</div>
+
+---
+
+## 🚀 Features
+
+✅ Generates multiple Solana wallets using `solders`  
+✅ Saves:
+- `wallet.txt`: Wallet addresses  
+- `pvt.csv`: Private key in byte array format  
+- `pvt2.csv`: Private key in raw base58 format (no extra symbols)  
+
+✅ Clean format – no quotes, no labels, just data  
+✅ Supports Linux, WSL, Ubuntu
+
+---
+
+## 🛠 Requirements
+
+- Python 3.10+
+- Install dependencies:
+
+```bash
+pip install solders base58
+pip install solana
+```
+
+## Run Commands - 
+```
+git clone https://github.com/deepakdhaka-1/Generate-Solana-Wallet/
+cd Generate-Solana-Wallet
+```
+```
+python3 solana.py
