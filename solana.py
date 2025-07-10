@@ -1,33 +1,30 @@
 from solders.keypair import Keypair
 from solders.pubkey import Pubkey
 import base58
-import csv
 
-def create_solana_accounts_csv(num_accounts: int):
-    with open("wallets.csv", mode="w", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerow(["Account No", "Public Key", "Public Key (base58)", "Public Key (array)", "Wallet Address"])
+def generate_wallets_and_save(num_accounts: int):
+    with open("wallet.txt", "w") as wallet_file, \
+         open("pvt.csv", "w") as pvt_file, \
+         open("pvt2.csv", "w") as pvt2_file:
 
-        for i in range(num_accounts):
+        for _ in range(num_accounts):
             keypair = Keypair()
             pubkey: Pubkey = keypair.pubkey()
 
-            pubkey_str = str(pubkey)
-            pubkey_bytes = bytes(pubkey)  # FIX: works like to_bytes()
-            pubkey_base58 = base58.b58encode(pubkey_bytes).decode()
-            pubkey_array = list(pubkey_bytes)
-            wallet_address = pubkey_str
+            wallet_address = str(pubkey)
+            private_key_base58 = base58.b58encode(bytes(keypair)).decode()
+            private_key_array = list(bytes(keypair))
 
-            writer.writerow([
-                f"Account {i + 1}",
-                pubkey_str,
-                pubkey_base58,
-                pubkey_array,
-                wallet_address
-            ])
+            # Save to files
+            wallet_file.write(f"{wallet_address}\n")
+            pvt_file.write(f"{private_key_array}\n")
+            pvt2_file.write(f"{private_key_base58}\n")  # ✅ raw base58 key only, no extra word
 
-    print(f"{num_accounts} Solana accounts created and saved to 'wallets.csv'.")
+    print("✅ Wallets generated and saved to:")
+    print(" - wallet.txt (addresses)")
+    print(" - pvt.csv (array format)")
+    print(" - pvt2.csv (raw base58 format)")
 
 if __name__ == "__main__":
-    count = int(input("How many Solana accounts do you want to generate? "))
-    create_solana_accounts_csv(count)
+    count = int(input("How many Solana wallets do you want to generate? "))
+    generate_wallets_and_save(count)
